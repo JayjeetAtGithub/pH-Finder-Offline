@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         fetchPhButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),RequestActivity.class);
+                Intent intent = new Intent(getApplicationContext(),ParamsActivity.class);
                 intent.putExtra("red",String.valueOf(r));
                 intent.putExtra("green",String.valueOf(g));
                 intent.putExtra("blue",String.valueOf(b));

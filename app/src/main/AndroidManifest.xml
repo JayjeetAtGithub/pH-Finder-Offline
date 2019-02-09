@@ -41,7 +41,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".RequestActivity"></activity>
+        <activity android:name=".RequestActivity" />
+        <activity android:name=".ParamsActivity"></activity>
     </application>
 
 </manifest>

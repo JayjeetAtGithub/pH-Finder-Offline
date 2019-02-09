@@ -17,12 +17,14 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.annotation.Documented;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RequestActivity extends AppCompatActivity {
 
-    private int r,g,b;
+    private Integer r,g,b;
+    private Double xn,yn,zn,lostar,aostar,bostar;
     private TextView result;
 
     @Override
@@ -35,6 +37,12 @@ public class RequestActivity extends AppCompatActivity {
         r = Integer.parseInt(intent.getStringExtra("red"));
         g = Integer.parseInt(intent.getStringExtra("green"));
         b = Integer.parseInt(intent.getStringExtra("blue"));
+        xn = Double.parseDouble(intent.getStringExtra("xn"));
+        yn = Double.parseDouble(intent.getStringExtra("yn"));
+        zn = Double.parseDouble(intent.getStringExtra("zn"));
+        lostar = Double.parseDouble(intent.getStringExtra("lostar"));
+        aostar = Double.parseDouble(intent.getStringExtra("aostar"));
+        bostar = Double.parseDouble(intent.getStringExtra("bostar"));
 
         String colorString = String.valueOf(r) + " : " + String.valueOf(g) + " : " + String.valueOf(b);
 
@@ -45,12 +53,12 @@ public class RequestActivity extends AppCompatActivity {
 
         JSONObject postparams = new JSONObject();
         try {
-            postparams.put("X_n",95.02);
-            postparams.put("Y_n",100);
-            postparams.put("Z_n",108.82);
-            postparams.put("l0_star",112.2);
-            postparams.put("a0_star",60);
-            postparams.put("b0_star",0);
+            postparams.put("X_n",xn);
+            postparams.put("Y_n",yn);
+            postparams.put("Z_n",zn);
+            postparams.put("l0_star",lostar);
+            postparams.put("a0_star",aostar);
+            postparams.put("b0_star",bostar);
             postparams.put("R",r);
             postparams.put("G",g);
             postparams.put("B",b);

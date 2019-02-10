@@ -10,42 +10,42 @@
     <EditText
         android:id="@+id/xn"
         android:hint="Enter Xn"
-        android:lines="1"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/yn"
         android:hint="Enter Yn"
-        android:lines="1"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/zn"
         android:hint="Enter Zn"
-        android:lines="1"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/l0_star"
         android:hint="Enter Lo*"
-        android:lines="1"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/a0_star"
         android:hint="Enter Ao*"
-        android:lines="1"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/b0_star"
         android:hint="Enter Bo*"
-        android:lines="1"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

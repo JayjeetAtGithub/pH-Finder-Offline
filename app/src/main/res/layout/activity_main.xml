@@ -15,16 +15,12 @@
 
     <TextView
         android:id="@+id/text_view"
-        android:text="RGB Values"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:text="Tap at a point to get the rgb value !"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"/>
-
-    <!--<Button-->
-        <!--android:id="@+id/camera_button"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="From Camera"/>-->
 
 
     <Button

@@ -27,7 +27,7 @@
         android:id="@+id/image_picker_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select From Gallery"
+        android:text="Pick Image From Gallery"
         android:layout_margin="10dp"/>
 
 
@@ -35,6 +35,6 @@
         android:id="@+id/ph_fetch_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Get PH Value"
+        android:text="Proceed"
         android:layout_margin="10dp"/>
 </LinearLayout>

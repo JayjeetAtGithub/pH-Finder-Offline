@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
 
 
@@ -40,8 +39,9 @@ public class CustomImageView extends ImageView {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.GREEN);
         paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(10);
         //canvas.drawCircle(m.x,m.y,10,paint);
         canvas.drawRect(m.x-15,m.y+15,m.x+15,m.y-15,paint);
         invalidate();

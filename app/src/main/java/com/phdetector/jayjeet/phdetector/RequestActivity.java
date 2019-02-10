@@ -44,9 +44,9 @@ public class RequestActivity extends AppCompatActivity {
         aostar = Double.parseDouble(intent.getStringExtra("aostar"));
         bostar = Double.parseDouble(intent.getStringExtra("bostar"));
 
-        String colorString = String.valueOf(r) + " : " + String.valueOf(g) + " : " + String.valueOf(b);
+        //String colorString = String.valueOf(r) + " : " + String.valueOf(g) + " : " + String.valueOf(b);
 
-        Toast.makeText(getApplicationContext(),colorString,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),colorString,Toast.LENGTH_SHORT).show();
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://app1234.pythonanywhere.com/calculateph";

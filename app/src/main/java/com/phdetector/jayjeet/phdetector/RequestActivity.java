@@ -34,19 +34,21 @@ public class RequestActivity extends AppCompatActivity {
         result = findViewById(R.id.result_text_view);
 
         Intent intent = getIntent();
-        r = Integer.parseInt(intent.getStringExtra("red"));
-        g = Integer.parseInt(intent.getStringExtra("green"));
-        b = Integer.parseInt(intent.getStringExtra("blue"));
-        xn = Double.parseDouble(intent.getStringExtra("xn"));
-        yn = Double.parseDouble(intent.getStringExtra("yn"));
-        zn = Double.parseDouble(intent.getStringExtra("zn"));
-        lostar = Double.parseDouble(intent.getStringExtra("lostar"));
-        aostar = Double.parseDouble(intent.getStringExtra("aostar"));
-        bostar = Double.parseDouble(intent.getStringExtra("bostar"));
-
-        //String colorString = String.valueOf(r) + " : " + String.valueOf(g) + " : " + String.valueOf(b);
-
-        //Toast.makeText(getApplicationContext(),colorString,Toast.LENGTH_SHORT).show();
+        try {
+            r = Integer.parseInt(intent.getStringExtra("red"));
+            g = Integer.parseInt(intent.getStringExtra("green"));
+            b = Integer.parseInt(intent.getStringExtra("blue"));
+            xn = Double.parseDouble(intent.getStringExtra("xn"));
+            yn = Double.parseDouble(intent.getStringExtra("yn"));
+            zn = Double.parseDouble(intent.getStringExtra("zn"));
+            lostar = Double.parseDouble(intent.getStringExtra("lostar"));
+            aostar = Double.parseDouble(intent.getStringExtra("aostar"));
+            bostar = Double.parseDouble(intent.getStringExtra("bostar"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(),"One or more fields were empty !",Toast.LENGTH_SHORT).show();
+        }
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://app1234.pythonanywhere.com/calculateph";
@@ -90,3 +92,4 @@ public class RequestActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 }
+

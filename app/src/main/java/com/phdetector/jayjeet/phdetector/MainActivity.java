@@ -144,7 +144,8 @@ public class MainActivity extends AppCompatActivity {
                          imageView.m.y = (int)event.getY();
                     }
                     catch (Exception e){
-                        Toast.makeText(getApplicationContext(),"Out of Bounds",Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                        //Toast.makeText(getApplicationContext(),"Out of Bounds",Toast.LENGTH_SHORT).show();
                     }
 
                     r = Color.red(pixel);

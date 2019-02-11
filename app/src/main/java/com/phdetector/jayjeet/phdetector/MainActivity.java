@@ -5,28 +5,71 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     private int r,g,b;
     public CustomImageView imageView;
-    private TextView textView;
-    private Button imagePickerButton,fetchPhButton;
+    private TextView textView,colorPreview;
+    private Button imagePickerButton,fetchPhButton, camerPickerButton;
     private Bitmap bitmap;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_IMAGE_GALLERY = 2;
+    String currentPhotoPath;
+
+    // Creates an Image File
+    public File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,
+                ".jpg",
+                storageDir
+        );
+
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    // Capture image through camera
+    public void selectImageFromCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.phdetector.jayjeet.phdetector.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
 
 
     // Select image from gallery
-    public void selectImage() {
+    public void selectImageFromGallery() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         if (intent.resolveActivity(getPackageManager()) != null) {
@@ -38,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            if(data != null){
-                //Toast.makeText(getApplicationContext(),"@NonNull Data",Toast.LENGTH_SHORT).show();
+            File imgFile = new  File(currentPhotoPath);
+            if(imgFile.exists())            {
+                imageView.setImageURI(Uri.fromFile(imgFile));
             }
         }
         else if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == RESULT_OK) {
             Uri fullPhotoUri = data.getData();
-            Log.d("PHOTO",fullPhotoUri.toString());
             imageView.setImageURI(fullPhotoUri);
         }
     }
@@ -56,16 +99,24 @@ public class MainActivity extends AppCompatActivity {
 
         imageView = (CustomImageView) findViewById(R.id.image_view);
         textView = findViewById(R.id.text_view);
+        colorPreview = findViewById(R.id.color_preview);
         imagePickerButton = findViewById(R.id.image_picker_button);
+        camerPickerButton = findViewById(R.id.camera_picker_button);
         fetchPhButton = findViewById(R.id.ph_fetch_button);
 
         imagePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectImage();
+                selectImageFromGallery();
             }
         });
 
+        camerPickerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImageFromCamera();
+            }
+        });
 
         fetchPhButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                     b = Color.blue(pixel);
 
                     textView.setText("rgb(" + r + "," + g + "," + b + ")");
+                    colorPreview.setBackgroundColor(Color.rgb(r,g,b));
                 }
                 return  true;
             }

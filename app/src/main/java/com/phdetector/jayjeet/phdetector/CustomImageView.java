@@ -42,7 +42,8 @@ public class CustomImageView extends ImageView {
         paint.setColor(Color.GREEN);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
-        canvas.drawCircle(m.x,m.y,15,paint);
+        canvas.drawCircle(m.x,m.y,30,paint);
+        canvas.drawPoint(m.x,m.y,paint);
         invalidate();
     }
 }

@@ -4,15 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <com.phdetector.jayjeet.phdetector.CustomImageView
         android:name="com.phdetector.jayjeet.phdetector.MarkableImageView"
         android:id="@+id/image_view"
         android:src="@drawable/placeholder"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_height="400dp"
+        android:scaleType="matrix"
         />
+    </ScrollView>
+    </HorizontalScrollView>
 
     <TextView
         android:id="@+id/text_view"

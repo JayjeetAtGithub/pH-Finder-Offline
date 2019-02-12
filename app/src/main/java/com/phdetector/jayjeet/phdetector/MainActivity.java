@@ -145,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     catch (Exception e){
                         e.printStackTrace();
-                        //Toast.makeText(getApplicationContext(),"Out of Bounds",Toast.LENGTH_SHORT).show();
                     }
 
                     r = Color.red(pixel);

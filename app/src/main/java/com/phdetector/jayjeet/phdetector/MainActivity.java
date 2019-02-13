@@ -24,16 +24,16 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     private int r,g,b;
-    public CustomImageView imageView;
+    private CustomImageView imageView;
     private TextView textView,colorPreview;
     private Button imagePickerButton,fetchPhButton, camerPickerButton;
     private Bitmap bitmap;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    static final int REQUEST_IMAGE_GALLERY = 2;
-    String currentPhotoPath;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_GALLERY = 2;
+    private String currentPhotoPath;
 
     // Creates an Image File
-    public File createImageFile() throws IOException {
+    private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Capture image through camera
-    public void selectImageFromCamera() {
+    private void selectImageFromCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             File photoFile = null;
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Select image from gallery
-    public void selectImageFromGallery() {
+    private void selectImageFromGallery() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         if (intent.resolveActivity(getPackageManager()) != null) {
@@ -159,3 +159,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+

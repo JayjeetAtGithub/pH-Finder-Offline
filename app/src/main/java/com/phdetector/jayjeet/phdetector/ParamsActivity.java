@@ -3,17 +3,28 @@ package com.phdetector.jayjeet.phdetector;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ParamsActivity extends AppCompatActivity {
 
     private Integer r,g,b;
-    EditText xn,yn,zn,lostar,aostar,bostar,m_value,c_value;
-    TextView advancedButton;
-    Button proceed;
+    private EditText xn,yn,zn,lostar,aostar,bostar,m_value,c_value;
+    private TextView advancedButton;
+    private Button proceed;
+
+    Boolean isValidNormalInputs(){
+        return !TextUtils.isEmpty(xn.getText()) && !TextUtils.isEmpty(yn.getText()) && !TextUtils.isEmpty(zn.getText())
+                && !TextUtils.isEmpty(aostar.getText()) && !TextUtils.isEmpty(bostar.getText()) && !TextUtils.isEmpty(lostar.getText());
+    }
+
+    public void toast(String message){
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,16 +68,24 @@ public class ParamsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),RequestActivity.class);
-                intent.putExtra("xn",String.valueOf(xn.getText().toString()));
-                intent.putExtra("yn",String.valueOf(yn.getText().toString()));
-                intent.putExtra("zn",String.valueOf(zn.getText().toString()));
-                intent.putExtra("lostar",String.valueOf(lostar.getText().toString()));
-                intent.putExtra("aostar",String.valueOf(aostar.getText().toString()));
-                intent.putExtra("bostar",String.valueOf(bostar.getText().toString()));
-                intent.putExtra("red",String.valueOf(r));
-                intent.putExtra("green",String.valueOf(g));
-                intent.putExtra("blue",String.valueOf(b));
-                startActivity(intent);
+                if(isValidNormalInputs()){
+                    intent.putExtra("xn",String.valueOf(xn.getText().toString()));
+                    intent.putExtra("yn",String.valueOf(yn.getText().toString()));
+                    intent.putExtra("zn",String.valueOf(zn.getText().toString()));
+                    intent.putExtra("lostar",String.valueOf(lostar.getText().toString()));
+                    intent.putExtra("aostar",String.valueOf(aostar.getText().toString()));
+                    intent.putExtra("bostar",String.valueOf(bostar.getText().toString()));
+                    intent.putExtra("red",String.valueOf(r));
+                    intent.putExtra("green",String.valueOf(g));
+                    intent.putExtra("blue",String.valueOf(b));
+                    intent.putExtra("m_value",String.valueOf(m_value.getText().toString()));
+                    intent.putExtra("c_value",String.valueOf(c_value.getText().toString()));
+                    startActivity(intent);
+                }
+                else
+                {
+                    toast("One or More Fields are empty !");
+                }
             }
         });
     }

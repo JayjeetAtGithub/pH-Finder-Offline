@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class ParamsActivity extends AppCompatActivity {
 
     private Integer r,g,b;
-    EditText xn,yn,zn,lostar,aostar,bostar;
+    EditText xn,yn,zn,lostar,aostar,bostar,m_value,c_value;
+    TextView advancedButton;
     Button proceed;
 
     @Override
@@ -30,7 +32,26 @@ public class ParamsActivity extends AppCompatActivity {
         lostar = findViewById(R.id.l0_star);
         aostar = findViewById(R.id.a0_star);
         bostar = findViewById(R.id.b0_star);
+        m_value = findViewById(R.id.value_m);
+        c_value = findViewById(R.id.value_c);
+
         proceed = findViewById(R.id.proceed_button);
+        advancedButton = findViewById(R.id.advanced_button);
+
+        advancedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(m_value.getVisibility() == View.VISIBLE && c_value.getVisibility() == View.VISIBLE) {
+                    m_value.setVisibility(View.INVISIBLE);
+                    c_value.setVisibility(View.INVISIBLE);
+                }
+                else{
+                    m_value.setVisibility(View.VISIBLE);
+                    c_value.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,3 +71,4 @@ public class ParamsActivity extends AppCompatActivity {
         });
     }
 }
+

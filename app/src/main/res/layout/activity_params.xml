@@ -7,6 +7,14 @@
     tools:context=".ParamsActivity"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <EditText
         android:id="@+id/xn"
         android:hint="Enter Xn"
@@ -49,9 +57,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/advanced_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Advanced"
+        android:textSize="18dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_margin="5dp"/>
+
+    <EditText
+        android:id="@+id/value_m"
+        android:hint="Enter Slope (m)"
+        android:inputType="numberDecimal"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/value_c"
+        android:hint="Enter Intercept(c)"
+        android:inputType="numberDecimal"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/proceed_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Proceed"/>
+
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

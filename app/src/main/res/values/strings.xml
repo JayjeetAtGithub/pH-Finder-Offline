@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">pH Detector</string>
+    <string name="advanced_label"><u>Advanced</u></string>
 </resources>

@@ -17,7 +17,6 @@ public class PhDetector {
         }
     }
 
-
     private double cubeRoot(double num){
         return Math.cbrt(num);
     }

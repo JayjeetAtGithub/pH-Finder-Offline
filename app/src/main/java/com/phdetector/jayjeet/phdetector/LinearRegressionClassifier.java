@@ -9,7 +9,7 @@ public class LinearRegressionClassifier {
     private Double result2;
 
     public LinearRegressionClassifier (ArrayList xdata, ArrayList YData) {
-        Xdata = xdata;
+        this.Xdata = xdata;
         this.YData = YData;
     }
 

@@ -38,7 +38,6 @@ public class PhDetector {
         double delb = boStar - bStar;
         double dele = Math.sqrt(Math.pow(dell,2) + Math.pow(dela,2) + Math.pow(delb,2));
         return dele;
-
     }
 
     public double phFromEq(double c, double m, double r, double g, double b, double xn, double yn , double zn, double loStar, double aoStar, double boStar){

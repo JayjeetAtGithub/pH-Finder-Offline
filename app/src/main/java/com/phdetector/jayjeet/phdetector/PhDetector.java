@@ -32,6 +32,10 @@ public class PhDetector {
         return arrayList;
     }
 
+    private double calculateError(double calculatedPh, double originalPh){
+        return (originalPh - calculatedPh)/originalPh;
+    }
+
     private double findDelE(double lStar, double aStar, double bStar, double loStar, double aoStar, double boStar){
         double dell = loStar - lStar;
         double dela = aoStar - aStar;
@@ -40,14 +44,23 @@ public class PhDetector {
         return dele;
     }
 
-    public double phFromEq(double c, double m, double r, double g, double b, double xn, double yn , double zn, double loStar, double aoStar, double boStar){
+    public ArrayList<Double> phFromEq(double c, double m, double r, double g, double b, double xn, double yn , double zn, double loStar, double aoStar, double boStar){
         ArrayList<Double> arrayList = findLAB(r,g,b,xn,yn,zn);
         double delEInp = findDelE(arrayList.get(0),arrayList.get(1),arrayList.get(2),loStar,aoStar,boStar);
         double outputPH = (delEInp - c)/m;
-        return outputPH;
+
+        ArrayList<Double> arrayListOriginal = findLAB(171,163,178,xn,yn,zn);
+        double delEInpOriginal = findDelE(arrayListOriginal.get(0),arrayListOriginal.get(1),arrayListOriginal.get(2),loStar,aoStar,boStar);
+        double outputPHOriginal = (delEInpOriginal - c)/m;
+
+        double error = calculateError(outputPHOriginal, 12.0);
+        ArrayList<Double> result = new ArrayList<>();
+        result.add(outputPH);
+        result.add(error);
+        return result;
     }
 
-    public double phFromData(double r, double g, double b, double xn, double yn , double zn, double loStar, double aoStar, double boStar){
+    public ArrayList<Double> phFromData(double r, double g, double b, double xn, double yn , double zn, double loStar, double aoStar, double boStar){
         ArrayList<Double> x = new ArrayList<>();
         ArrayList<Double> y = new ArrayList<Double>(Arrays.<Double>asList(2.0,4.0,6.0,8.0,10.0,12.0));
         ArrayList<RGBColor> rgbValues = new ArrayList<>(Arrays.<RGBColor>asList(
@@ -65,8 +78,18 @@ public class PhDetector {
         }
 
         ArrayList<Double> labInp = findLAB(r,g,b,xn,yn,zn);
-        Double delEInp = findDelE(labInp.get(0),labInp.get(1),labInp.get(2),loStar,aoStar,boStar);
+        double delEInp = findDelE(labInp.get(0),labInp.get(1),labInp.get(2),loStar,aoStar,boStar);
+
+        ArrayList<Double> labInpOriginal = findLAB(171, 163, 178, xn,yn,zn);
+        double delEInpOriginal = findDelE(labInpOriginal.get(0),labInpOriginal.get(1),labInpOriginal.get(2),loStar,aoStar,boStar);
+
         LinearRegressionClassifier classifier = new LinearRegressionClassifier(x,y);
-        return  classifier.predictValue(delEInp);
+        double outputPH = classifier.predictValue(delEInp);
+        double outputPHOriginal = classifier.predictValue(delEInpOriginal);
+        double error = calculateError(outputPHOriginal, 12);
+        ArrayList<Double> result = new ArrayList<>();
+        result.add(outputPH);
+        result.add(error);
+        return result;
     }
 }

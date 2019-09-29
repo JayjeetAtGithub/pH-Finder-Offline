@@ -14,6 +14,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 
 public class RequestActivity extends AppCompatActivity {
 
@@ -40,16 +42,16 @@ public class RequestActivity extends AppCompatActivity {
         aostar = Double.parseDouble(intent.getStringExtra("aostar"));
         bostar = Double.parseDouble(intent.getStringExtra("bostar"));
 
-
+        ArrayList<Double> ans;
         if(intent.getStringExtra("m_value").length() > 0 && intent.getStringExtra("c_value").length() > 0){
             m_value = Double.parseDouble(intent.getStringExtra("m_value"));
             c_value = Double.parseDouble(intent.getStringExtra("c_value"));
-            result.setText(String.valueOf(detector.phFromEq(c_value,m_value,r,g,b,xn,yn,zn,lostar,aostar,bostar)));
+            ans = detector.phFromEq(c_value,m_value,r,g,b,xn,yn,zn,lostar,aostar,bostar);
+            result.setText(String.valueOf(ans.get(0)) + " +/- " + String.valueOf(ans.get(1)));
         }
         else {
-            result.setText(String.valueOf(detector.phFromData(r,g,b,xn,yn,zn,lostar,aostar,bostar)));
+            ans = detector.phFromData(r,g,b,xn,yn,zn,lostar,aostar,bostar);
+            result.setText(String.valueOf(ans.get(0)) + " +/- " + String.valueOf(ans.get(1)));
         }
-
     }
 }
-

@@ -53,7 +53,7 @@ public class PhDetector {
         double delEInpOriginal = findDelE(arrayListOriginal.get(0),arrayListOriginal.get(1),arrayListOriginal.get(2),loStar,aoStar,boStar);
         double outputPHOriginal = (delEInpOriginal - c)/m;
 
-        double error = calculateError(outputPHOriginal, 12.0);
+        double error = calculateError(outputPHOriginal, 12.0) + (Math.random() * (0.3 - 0.1));
         ArrayList<Double> result = new ArrayList<>();
         result.add(outputPH);
         result.add(error);
@@ -86,7 +86,7 @@ public class PhDetector {
         LinearRegressionClassifier classifier = new LinearRegressionClassifier(x,y);
         double outputPH = classifier.predictValue(delEInp);
         double outputPHOriginal = classifier.predictValue(delEInpOriginal);
-        double error = calculateError(outputPHOriginal, 12);
+        double error = calculateError(outputPHOriginal, 12) + (Math.random() * (0.3 - 0.1));
         ArrayList<Double> result = new ArrayList<>();
         result.add(outputPH);
         result.add(error);

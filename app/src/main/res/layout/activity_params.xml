@@ -27,36 +27,48 @@
     <EditText
         android:id="@+id/xn"
         android:hint="Enter Xn"
+        android:inputType="numberDecimal"
+        android:text="95.02"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/yn"
         android:hint="Enter Yn"
+        android:inputType="numberDecimal"
+        android:text="100"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/zn"
         android:hint="Enter Zn"
+        android:inputType="numberDecimal"
+        android:text="108.82"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/l0_star"
         android:hint="Enter Lo*"
+        android:inputType="numberDecimal"
+        android:text="112.2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/a0_star"
         android:hint="Enter Ao*"
+        android:inputType="numberDecimal"
+        android:text="60"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/b0_star"
         android:hint="Enter Bo*"
+        android:inputType="numberDecimal"
+        android:text="0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -73,6 +85,7 @@
     <EditText
         android:id="@+id/value_m"
         android:hint="Enter Slope (m)"
+        android:inputType="numberDecimal"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -80,6 +93,7 @@
     <EditText
         android:id="@+id/value_c"
         android:hint="Enter Intercept(c)"
+        android:inputType="numberDecimal"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

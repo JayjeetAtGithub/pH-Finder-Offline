@@ -3,7 +3,7 @@ An Android app for sensing of pH of gold nanostructures using smartphone. The ap
 
 ### Building Instructions
 
-1. Clone the repository
+1. Clone the repository.
 ```
 git clone https://github.com/JayjeetAtGithub/pH-Finder-Offline
 ```
